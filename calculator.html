@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>간단한 계산기</title>
+    <link rel="stylesheet" type="text/css" href="calculator.css">
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="result" class="input" readonly>
+        <table>
+            <tr>
+                <td><button onclick="appendToResult('7')">7</button></td>
+                <td><button onclick="appendToResult('8')">8</button></td>
+                <td><button onclick="appendToResult('9')">9</button></td>
+                <td><button onclick="appendToResult('/')">/</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="appendToResult('4')">4</button></td>
+                <td><button onclick="appendToResult('5')">5</button></td>
+                <td><button onclick="appendToResult('6')">6</button></td>
+                <td><button onclick="appendToResult('*')">*</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="appendToResult('1')">1</button></td>
+                <td><button onclick="appendToResult('2')">2</button></td>
+                <td><button onclick="appendToResult('3')">3</button></td>
+                <td><button onclick="appendToResult('-')">-</button></td>
+            </tr>
+            <tr>
+                <td><button onclick="appendToResult('0')">0</button></td>
+                <td><button onclick="appendToResult('.')">.</button></td>
+                <td><button onclick="calculateResult()">=</button></td>
+                <td><button onclick="appendToResult('+')">+</button></td>
+            </tr>
+            <tr>
+                <td colspan="4"><button onclick="clearResult()">Clear</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <script src="calculator.js"></script>
+</body>
+</html>
