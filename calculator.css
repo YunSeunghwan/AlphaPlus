@@ -7,10 +7,15 @@
 .input {
     width: 40vw;
     margin-bottom: 10px;
+    font-size:8vw;
 }
 
 button {
     width: 10vw;
     height: 10vw;
+    font-size: 8vw;
+}
+#clearbutton{
+    width:30vw;
     font-size: 8vw;
 }
