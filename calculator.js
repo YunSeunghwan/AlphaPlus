@@ -1,16 +1,20 @@
 let temp = 0.0;
 let currentOperator = null;
-let operatorAppended = false;
+let isOperatorAppended = false;
 
 function showResult(value) {
   document.getElementById('result').value = value;
+}
+
+function setClearButtonText(value) {
+  document.getElementById('clearbutton').textContent = value;
 }
 
 function clearResult() {
   const btnText = document.getElementById('clearbutton').textContent;
   showResult('0');
   if (btnText === 'C') {
-    document.getElementById('clearbutton').textContent = 'AC';
+    setClearButtonText('AC');
   } else {
     temp = 0.0;
     currentOperator = null;
@@ -18,21 +22,21 @@ function clearResult() {
 }
 
 function appendToResult(value) {
-  document.getElementById('clearbutton').textContent = 'C';
-  if (operatorAppended) {
+  let resultText = document.getElementById('result').value;
+  setClearButtonText('C');
+  if (isOperatorAppended) {
     if (value === '.') {
       // when [operator]-> [.] clicked
       showResult('0.');
     } else {
       showResult(value);
     }
-    operatorAppended = false;
+    isOperatorAppended = false;
   } else {
-    let resultText = document.getElementById('result').value;
     switch (value) {
       case '.':
         if (resultText.includes('.')) {
-          // pass. (double floatin-point)
+          // pass. (no-double-floating-point)
         } else {
           resultText += value;
           showResult(resultText);
@@ -40,7 +44,7 @@ function appendToResult(value) {
         break;
       case '0':
         if (resultText === '0') {
-          // pass. (double zero)
+          // pass. (no-double-zero)
         } else {
           resultText += value;
           showResult(resultText);
@@ -61,6 +65,7 @@ function appendToResult(value) {
 function calculateResult() {
   const currentTemp = parseFloat(temp);
   const currentResult = parseFloat(document.getElementById('result').value);
+  const resultText = document.getElementById('result').value;
   switch (currentOperator) {
     case '+':
       temp = currentTemp + currentResult;
@@ -75,7 +80,7 @@ function calculateResult() {
       temp = currentTemp / currentResult;
       break;
     default:
-      temp = document.getElementById('result').value;
+      temp = resultText;
       break;
   }
   const maxDigit = 10;
@@ -85,9 +90,9 @@ function calculateResult() {
 }
 
 function appendOperator(op) {
-  if (!operatorAppended) {
+  if (!isOperatorAppended) {
     calculateResult();
-    operatorAppended = true;
+    isOperatorAppended = true;
   }
   currentOperator = op;
 }
