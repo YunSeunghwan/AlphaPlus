@@ -7,12 +7,18 @@ function showResult(value) {
 }
 
 function clearResult() {
+  const btnText = document.getElementById('clearbutton').textContent;
   showResult('0');
-  temp = 0.0;
-  currentOperator = null;
+  if (btnText === 'C') {
+    document.getElementById('clearbutton').textContent = 'AC';
+  } else {
+    temp = 0.0;
+    currentOperator = null;
+  }
 }
 
 function appendToResult(value) {
+  document.getElementById('clearbutton').textContent = 'C';
   if (operatorAppended) {
     if (value === '.') {
       // when [operator]-> [.] clicked
@@ -23,21 +29,19 @@ function appendToResult(value) {
     operatorAppended = false;
   } else {
     let resultText = document.getElementById('result').value;
-    switch(value) {
+    switch (value) {
       case '.':
         if (resultText.includes('.')) {
           // pass. (double floatin-point)
-        } else if(resultText === '0') {
-          showResult('0.')
         } else {
           resultText += value;
           showResult(resultText);
         }
         break;
-        case '0':
-          if (resultText === '0') {
-            // pass. (double zero)
-          } else {
+      case '0':
+        if (resultText === '0') {
+          // pass. (double zero)
+        } else {
           resultText += value;
           showResult(resultText);
         }
@@ -47,7 +51,7 @@ function appendToResult(value) {
           showResult(value);
         } else {
           resultText += value;
-          showResult(resultText)
+          showResult(resultText);
         }
         break;
     }
@@ -57,10 +61,6 @@ function appendToResult(value) {
 function calculateResult() {
   const currentTemp = parseFloat(temp);
   const currentResult = parseFloat(document.getElementById('result').value);
-  // console.log(currentTemp);
-  // console.log(currentResult);
-  // console.log(typeof currentTemp);
-  // console.log(typeof currentResult);
   switch (currentOperator) {
     case '+':
       temp = currentTemp + currentResult;
@@ -78,8 +78,8 @@ function calculateResult() {
       temp = document.getElementById('result').value;
       break;
   }
-
-  const result = parseFloat(parseFloat(temp).toFixed(10));
+  const maxDigit = 10;
+  const result = parseFloat(parseFloat(temp).toFixed(maxDigit));
   showResult(result);
   currentOperator = null;
 }
