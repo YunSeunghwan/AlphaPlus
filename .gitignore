@@ -1,0 +1,7 @@
+# Ignore files
+.eslintrc.js
+package.json
+package-lock.json
+
+# Ignore build artifacts
+node_modules/
