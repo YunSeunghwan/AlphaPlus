@@ -1,20 +1,25 @@
 let temp = 0.0;
 let currentOperator = null;
 let isOperatorAppended = false;
+let clearButtonState = 'AC';
 
 function showResult(value) {
   document.getElementById('result').value = value;
 }
 
-function setClearButtonText(value) {
+function showClearButton(value) {
   document.getElementById('clearbutton').textContent = value;
 }
 
+function setClearButton(value) {
+  clearButtonState = value;
+  showClearButton(clearButtonState);
+}
+
 function clearResult() {
-  const btnText = document.getElementById('clearbutton').textContent;
   showResult('0');
-  if (btnText === 'C') {
-    setClearButtonText('AC');
+  if (clearButtonState === 'C') {
+    setClearButton('AC');
   } else {
     temp = 0.0;
     currentOperator = null;
@@ -23,7 +28,7 @@ function clearResult() {
 
 function appendToResult(value) {
   let resultText = document.getElementById('result').value;
-  setClearButtonText('C');
+  setClearButton('C');
   if (isOperatorAppended) {
     if (value === '.') {
       // when [operator]-> [.] clicked
