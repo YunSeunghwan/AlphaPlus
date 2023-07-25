@@ -14,3 +14,5 @@
     * eslintを用いてきれいなコード作成
     * case文を用いて読みやすいコードに修正
     * C/AC使い分け
+* 23.07.25
+    * git branch:develop

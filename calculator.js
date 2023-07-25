@@ -36,7 +36,7 @@ function appendToResult(value) {
     switch (value) {
       case '.':
         if (resultText.includes('.')) {
-          // pass. (no-double-floating-point)
+          // pass. (no-double-floating-point).
         } else {
           resultText += value;
           showResult(resultText);
